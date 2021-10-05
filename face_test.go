@@ -10,7 +10,7 @@ import (
 	"testing"
 	"unsafe"
 
-	"github.com/Kagami/go-face"
+	"github.com/PJ-Watson/go-face"
 )
 
 var (

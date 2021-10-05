@@ -119,6 +119,7 @@ public:
 		std::unique_lock<std::shared_mutex> lock(samples_mutex_);
 		samples_ = std::move(samples);
 		cats_ = std::move(cats);
+    return {cats.size()}
 	}
 
 	int Classify(const descriptor& test_sample, float tolerance) {
@@ -234,7 +235,7 @@ void facerec_set_samples(
 		samples.push_back(std::move(sample));
 	}
 	std::vector<int> cats(c_cats, c_cats + len);
-	cls->SetSamples(std::move(samples), std::move(cats));
+	return cls->SetSamples(std::move(samples), std::move(cats));
 }
 
 int facerec_classify(facerec* rec, const float* c_test_sample, float tolerance) {
