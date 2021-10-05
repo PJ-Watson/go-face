@@ -1,7 +1,6 @@
 #include <unordered_map>
 #include <dlib/graph_utils.h>
 #include "classify.h"
-#include <iostream>
 
 int classify(
 	const std::vector<descriptor>& samples,
@@ -26,8 +25,6 @@ int classify(
 
 	if (distances.size() == 0)
 		return -1;
-
-	std::cout << "Reached here" ;
 
 	std::sort(
 		distances.begin(), distances.end(),
@@ -58,9 +55,5 @@ int classify(
 			return hits1 < hits2;
 		}
 	);
-
-	std::cout << "Found hits";
-	std::cout << hit;
-
 	return hit->first;
 }
