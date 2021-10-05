@@ -115,7 +115,7 @@ public:
 		return {std::move(rects), std::move(descrs), std::move(shapes)};
 	}
 
-	void SetSamples(std::vector<descriptor>&& samples, std::vector<int>&& cats) {
+	int SetSamples(std::vector<descriptor>&& samples, std::vector<int>&& cats) {
 		std::unique_lock<std::shared_mutex> lock(samples_mutex_);
 		samples_ = std::move(samples);
 		cats_ = std::move(cats);
