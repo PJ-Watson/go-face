@@ -119,7 +119,7 @@ public:
 		std::unique_lock<std::shared_mutex> lock(samples_mutex_);
 		samples_ = std::move(samples);
 		cats_ = std::move(cats);
-    return {cats.size()}
+    return {cats.size()};
 	}
 
 	int Classify(const descriptor& test_sample, float tolerance) {
