@@ -230,13 +230,16 @@ func (rec *Recognizer) RecognizeSingleFileCNN(imgPath string) (face *Face, err e
 // Thread-safe.
 func (rec *Recognizer) SetSamples(samples []Descriptor, cats []int32) int {
 	// if len(samples) == 0 || len(samples) != len(cats) {
-		if len(samples) != len(cats) {
-		return 0
-	}
-	cSamples := (*C.float)(unsafe.Pointer(&samples[0]))
-	cCats := (*C.int32_t)(unsafe.Pointer(&cats[0]))
-	cLen := C.int(len(samples))
-	return int(C.facerec_set_samples(rec.ptr, cSamples, cCats, cLen))
+	if len(samples) != len(cats) {
+		return
+	} else if len(samples) == 0 {
+		C.facerec_reset_samples(rec.ptr)
+	} else {
+		cSamples := (*C.float)(unsafe.Pointer(&samples[0]))
+		cCats := (*C.int32_t)(unsafe.Pointer(&cats[0]))
+		cLen := C.int(len(samples))
+		C.facerec_set_samples(rec.ptr, cSamples, cCats, cLen)
+  }
 }
 
 // Classify returns class ID for the given descriptor. Negative index is
