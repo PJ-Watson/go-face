@@ -228,7 +228,7 @@ func (rec *Recognizer) RecognizeSingleFileCNN(imgPath string) (face *Face, err e
 
 // SetSamples sets known descriptors so you can classify the new ones.
 // Thread-safe.
-func (rec *Recognizer) SetSamples(samples []Descriptor, cats []int32) int {
+func (rec *Recognizer) SetSamples(samples []Descriptor, cats []int32) {
 	// if len(samples) == 0 || len(samples) != len(cats) {
 	if len(samples) != len(cats) {
 		return
