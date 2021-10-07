@@ -124,7 +124,7 @@ public:
   void ResetSamples() {
 		std::unique_lock<std::shared_mutex> lock(samples_mutex_);
 		samples_ = std::move(std::vector<descriptor>());
-		cats_ = std::move(std::vector<int>);
+		cats_ = std::move(std::vector<int>());
 	}
 
 	int Classify(const descriptor& test_sample, float tolerance) {
